@@ -9,9 +9,15 @@ import {AppRegistry, Platform, StyleSheet, Text, View, TouchableHighlight} from 
 
 export default class ScreenPlayCards extends Component<{}> {
 
+    static navigationOptions = {
+        title: 'Flash Cards: Play Cards'
+    }
+
     render() {
         return (
-            <View />
+            <View>
+                <Text>Screen Play Cards</Text>
+            </View>
         );
     }
 }

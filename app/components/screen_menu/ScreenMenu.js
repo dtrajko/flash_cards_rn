@@ -9,22 +9,28 @@ import {AppRegistry, Platform, StyleSheet, Text, View, TouchableHighlight, Alert
 
 export default class ScreenMenu extends Component<{}> {
 
-    constructor() {
-        super();
+    static navigationOptions = {
+        title: 'Flash Cards: Menu'
     }
 
-    openGameScreen() {
-        Alert.alert('Open Game Screen!');
+    constructor() {
+        super();
+        this.state = {};
+    }
+
+    screenPlayCards() {
+
     }
 
     render() {
+        var {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
                 <View style={styles.container_top}>
                     <Text style={styles.flash_cards_text}>Flash Cards</Text>
                 </View>
                 <View style={styles.container_bottom}>
-                    <TouchableHighlight onPress={this.openGameScreen}
+                    <TouchableHighlight onPress={() => navigate("ScreenPlayCards", {})}
                         underlayColor="white">
                         <View style={styles.play_button}>
                             <Text style={styles.play_button_text}>Play Cards</Text>
