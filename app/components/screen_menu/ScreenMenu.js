@@ -1,11 +1,10 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * ScreenMenu class
  * @flow
  */
 
 import React, { Component } from 'react';
-import {AppRegistry, Platform, StyleSheet, Text, View, TouchableHighlight, Alert, Button} from 'react-native';
+import {AppRegistry, Platform, StyleSheet, Text, View, TouchableHighlight, Alert} from 'react-native';
 
 export default class ScreenMenu extends Component<{}> {
 
