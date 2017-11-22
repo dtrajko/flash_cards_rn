@@ -50,17 +50,21 @@ const styles = StyleSheet.create({
     },
     container_top: {
         flex: 2,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignItems: 'center',
+        alignSelf: 'stretch',
+        backgroundColor: '#2196F3',
+        paddingBottom: 30,
     },
     container_bottom: {
-        flex: 3,
+        flex: 4,
         justifyContent: 'flex-start',
         alignItems: 'center',
+        paddingTop: 40,
     },
     flash_cards_text: {
-        color: '#2196F3',
-        fontSize: 48,
+        color: '#EEE',
+        fontSize: 60,
         fontWeight: 'bold',
     },
     play_button: {
