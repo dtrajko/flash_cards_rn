@@ -11,16 +11,19 @@ export default class FlashCard extends Component<{}> {
 
     constructor() {
         super();
+        const responseJson = this.getMoviesFromApiAsync();
         this.state = {};
-        // voc_options = this.getMoviesFromApiAsync();
-        // Alert.alert(voc_options.toString());
     }
 
     getMoviesFromApiAsync() {
-        return fetch('http://flash_cards.dtrajko-vm/cards/json')
+        return fetch('https://raw.githubusercontent.com/dtrajko/flash_cards_rn/master/resources/flash_card.json')
         .then((response) => response.json())
         .then((responseJson) => {
-            return responseJson.voc_options;
+            this.setState({picture: responseJson.term.picture});
+            this.setState({flag: responseJson.language.flag});
+            this.setState({language: responseJson.language.name});
+            console.log('this.state.picture: ' + this.state.picture);
+            return responseJson;
         })
         .catch((error) => {
             console.error(error);
@@ -38,7 +41,7 @@ export default class FlashCard extends Component<{}> {
                 <View style={styles.section_picture}>
                     <Image
                         style={styles.term_image}
-                        source={require('../../../resources/images/terms/1509173535.jpg')} />
+                        source={require('../../../resources/images/terms/1508771699.jpg')} />
                 </View>
 
                 <View style={styles.section_language}>
@@ -49,7 +52,7 @@ export default class FlashCard extends Component<{}> {
                                 source={require('../../../resources/images/flags/1507986530.jpg')} />
                         </View>
                         <View style={styles.section_language_text_view}>
-                            <Text style={styles.section_language_text}>Français</Text>
+                            <Text style={styles.section_language_text}>{this.state.language}</Text>
                         </View>
                     </View>
                 </View>
