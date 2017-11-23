@@ -24,8 +24,6 @@ export default class ScreenPlayCards extends Component<{}> {
                     <FlashCard />
                 </View>
 
-
-
             </View>
         );
     }
