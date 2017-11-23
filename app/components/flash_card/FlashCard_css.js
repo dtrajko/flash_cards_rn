@@ -18,34 +18,37 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 6,
     },
+    term_image: {
+        height: 150,
+    },
     flag_image: {
-        width: 90,
-        height: 50,
+        width: 60,
+        height: 34,
     },
     section_language_text_view: {
-        marginLeft: 10,
-        paddingTop: 10,
+        marginLeft: 6,
+        paddingTop: 3,
     },
     section_language_text: {
         fontSize: 20,
         fontWeight: 'bold',
     },
     section_buttons: {
-        flex: 12,
+        flex: 13,
         alignSelf: 'stretch',
-        marginTop: 10,
+        marginTop: 0,
     },
     play_button: {
         alignSelf: 'stretch',
         alignItems: 'center',
         backgroundColor: '#2196F3',
-        padding: 16,
+        padding: 12,
         margin: 4,
         marginTop: 0,
     },
     play_button_text: {
         color: 'white',
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: 'bold',
     },
 });

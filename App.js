@@ -16,22 +16,3 @@ const App = StackNavigator({
 });
 
 export default App;
-
-/**
-export default class App extends Component<{}> {
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <ScreenMenu />
-            </View>
-        );
-    }
-}
-*/
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-});

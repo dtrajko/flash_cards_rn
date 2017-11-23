@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import {AppRegistry, Platform, StyleSheet, Text, View, TouchableHighlight, Alert, Image} from 'react-native';
+import {AppRegistry, Platform, StyleSheet, Text, View, ScrollView, TouchableHighlight, Alert, Image} from 'react-native';
 import FlashCard from '../flash_card/FlashCard';
 
 export default class ScreenPlayCards extends Component<{}> {
@@ -15,7 +15,7 @@ export default class ScreenPlayCards extends Component<{}> {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.section_score}>
                     <Text style={styles.section_score_text}>Score: 0 | Best score: 0</Text>
                 </View>
@@ -24,7 +24,7 @@ export default class ScreenPlayCards extends Component<{}> {
                     <FlashCard />
                 </View>
 
-            </View>
+            </ScrollView>
         );
     }
 }
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#EEE',
         alignSelf: 'stretch',
         alignItems: 'center',
-        paddingTop: 12,
+        paddingTop: 10,
     },
     section_score_text: {
         fontSize: 24,

@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import {AppRegistry, Platform, Text, View, TouchableNativeFeedback, Alert, Image} from 'react-native';
+import {AppRegistry, Platform, Text, View, ScrollView, TouchableNativeFeedback, Alert, Image} from 'react-native';
 import SQLite from 'react-native-sqlite-storage';
 import ImagesIndex from '../../../resources/images/images_index';
 import styles from './FlashCard_css';
@@ -89,6 +89,7 @@ export default class FlashCard extends Component<{}> {
                 <View style={styles.section_picture}>
                     <Image
                         style={styles.term_image}
+                        resizeMode={'contain'}
                         source={ImagesIndex['term_image_' + this.state.picture]} />
                 </View>
 
