@@ -6,23 +6,69 @@
 
 import React, { Component } from 'react';
 import {AppRegistry, Platform, StyleSheet, Text, View, TouchableHighlight, Alert, Image} from 'react-native';
+import SQLite from 'react-native-sqlite-storage';
+import ImagesIndex from '../../../resources/images/images_index';
 
 export default class FlashCard extends Component<{}> {
 
     constructor() {
         super();
-        const responseJson = this.getMoviesFromApiAsync();
-        this.state = {};
+        const responseJson = this.getCardDataFromApiAsync();
+        this.state = {
+            db: this.openDb(),
+        }
     }
 
-    getMoviesFromApiAsync() {
+    errorCB(err) {
+        console.log("SQL Error: " + err);
+    }
+
+    successCB() {
+        console.log("SQL executed fine");
+    }
+
+    openCB() {
+        console.log("Database OPENED");
+    }
+
+    openDb() {
+        return SQLite.openDatabase('../../../resources/db/flash_cards.db', '1.0', 'Flash Cards Database', 20, this.openCB, this.errorCB);
+    }
+
+    queryDb() {
+        this.state.db.transaction((tx) => {
+            tx.executeSql("SELECT * FROM terms", [], (tx, results) => {
+                console.log("Query completed");
+
+                // Get rows with Web SQL Database spec compliance.
+                var len = results.rows.length;
+                for (let i = 0; i < len; i++) {
+                    let row = results.rows.item(i);
+                    console.log(`Term name: ${row.name}, Term picture: ${row.picture}`);
+                }
+            });
+        });
+    }
+
+    componentDidMount() {
+        this.queryDb();
+    }
+
+    getCardDataFromApiAsync() {
         return fetch('https://raw.githubusercontent.com/dtrajko/flash_cards_rn/master/resources/flash_card.json')
         .then((response) => response.json())
         .then((responseJson) => {
-            this.setState({picture: responseJson.term.picture});
-            this.setState({flag: responseJson.language.flag});
+            var picture_with_ext = responseJson.term.picture;
+            var flag_with_ext = responseJson.language.flag;
+
+            this.setState({picture: picture_with_ext.substr(0, picture_with_ext.lastIndexOf('.')) || picture_with_ext});
+            this.setState({flag: flag_with_ext.substr(0, flag_with_ext.lastIndexOf('.')) || flag_with_ext});
             this.setState({language: responseJson.language.name});
-            console.log('this.state.picture: ' + this.state.picture);
+            this.setState({voc_option_0: responseJson.voc_options[0].translation});
+            this.setState({voc_option_1: responseJson.voc_options[1].translation});
+            this.setState({voc_option_2: responseJson.voc_options[2].translation});
+            this.setState({voc_option_3: responseJson.voc_options[3].translation});
+            console.log('term_image_' + this.state.picture);
             return responseJson;
         })
         .catch((error) => {
@@ -41,7 +87,7 @@ export default class FlashCard extends Component<{}> {
                 <View style={styles.section_picture}>
                     <Image
                         style={styles.term_image}
-                        source={require('../../../resources/images/terms/1508771699.jpg')} />
+                        source={ImagesIndex['term_image_' + this.state.picture]} />
                 </View>
 
                 <View style={styles.section_language}>
@@ -49,7 +95,7 @@ export default class FlashCard extends Component<{}> {
                         <View>
                             <Image
                                 style={styles.flag_image}
-                                source={require('../../../resources/images/flags/1507986530.jpg')} />
+                                source={ImagesIndex['flag_image_' + this.state.flag]} />
                         </View>
                         <View style={styles.section_language_text_view}>
                             <Text style={styles.section_language_text}>{this.state.language}</Text>
@@ -62,25 +108,25 @@ export default class FlashCard extends Component<{}> {
                     <TouchableHighlight onPress={this.onPressButton}
                         underlayColor="white">
                         <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>die Schachtel</Text>
+                            <Text style={styles.play_button_text}>{this.state.voc_option_0}</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight onPress={this.onPressButton}
                         underlayColor="white">
                         <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>die Gebäude</Text>
+                            <Text style={styles.play_button_text}>{this.state.voc_option_1}</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight onPress={this.onPressButton}
                         underlayColor="white">
                         <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>die Uhr</Text>
+                            <Text style={styles.play_button_text}>{this.state.voc_option_2}</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight onPress={this.onPressButton}
                         underlayColor="white">
                         <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>das Fahrrad</Text>
+                            <Text style={styles.play_button_text}>{this.state.voc_option_3}</Text>
                         </View>
                     </TouchableHighlight>
 
