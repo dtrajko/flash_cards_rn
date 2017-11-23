@@ -33,12 +33,13 @@ export default class FlashCard extends Component<{}> {
     }
 
     openDb() {
-        return SQLite.openDatabase('../../../resources/db/flash_cards.db', '1.0', 'Flash Cards Database', 20, this.openCB, this.errorCB);
+        return SQLite.openDatabase({name: 'flash_cards.db', createFromLocation: '~flash_cards.db',
+            location: 'Library'}, this.openCB, this.errorCB);
     }
 
     queryDb() {
         this.state.db.transaction((tx) => {
-            tx.executeSql("SELECT * FROM terms", [], (tx, results) => {
+            tx.executeSql("SELECT * FROM terms;", [], (tx, results) => {
                 console.log("Query completed");
 
                 // Get rows with Web SQL Database spec compliance.
