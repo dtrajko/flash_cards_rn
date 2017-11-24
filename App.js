@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import {Platform, StyleSheet, Text, View, TouchableHighlight} from 'react-native';
+import {AppRegistry, Platform, StyleSheet, Text, View, ScrollView, TouchableHighlight} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import ScreenMenu from './app/components/screen_menu/ScreenMenu';
 import ScreenPlayCards from './app/components/screen_play_cards/ScreenPlayCards';

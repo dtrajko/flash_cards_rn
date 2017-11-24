@@ -15,15 +15,12 @@ export default class ScreenMenu extends Component<{}> {
 
     constructor() {
         super();
-        this.state = {};
-    }
-
-    screenPlayCards() {
-
+        this.state = {
+        };
     }
 
     render() {
-        var {navigate} = this.props.navigation;
+        const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
 
@@ -33,8 +30,7 @@ export default class ScreenMenu extends Component<{}> {
                         <Text style={styles.flash_cards_text}>Flash Cards</Text>
                     </View>
                     <View style={styles.container_bottom}>
-                        <TouchableHighlight onPress={() => navigate("ScreenPlayCards", {})}
-                            underlayColor="white">
+                        <TouchableHighlight onPress={() => navigate('ScreenPlayCards', {})}>
                             <View style={styles.play_button}>
                                 <Text style={styles.play_button_text}>Play Cards</Text>
                             </View>

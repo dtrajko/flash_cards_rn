@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#EEE',
+        alignSelf: 'stretch',
     },
     container_top: {
         flex: 3,
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         opacity: 2,
         padding: 0,
+        fontStyle: 'italic',
     },
     play_button: {
         width: 260,
