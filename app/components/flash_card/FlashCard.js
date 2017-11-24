@@ -19,6 +19,7 @@ export default class FlashCard extends Component<{}> {
         this.state = {
             iteration: 0,
             db: this.openDb(),
+            stateIsSet: false,
         }
     }
 
@@ -44,6 +45,9 @@ export default class FlashCard extends Component<{}> {
     }
 
     componentDidMount() {
+
+        this.setState({ stateIsSet: false });
+
         this.state.db.transaction((tx) => {
             // get random term
             tx.executeSql("SELECT * FROM terms ORDER BY RANDOM() LIMIT 1", [], (tx, results) => {
@@ -78,30 +82,15 @@ export default class FlashCard extends Component<{}> {
                 " WHERE l.enabled = 1 ORDER BY RANDOM() LIMIT 4";
             tx.executeSql(sql, [], (tx, results) => {
 
-                /*
-                let voc_entry_0 = results.rows.item(0);
-                let voc_entry_1 = results.rows.item(1);
-                let voc_entry_2 = results.rows.item(2);
-                let voc_entry_3 = results.rows.item(3);
-                let voc_entry_id_0 = voc_entry_0.id;
-                let voc_entry_id_1 = voc_entry_1.id;
-                let voc_entry_id_3 = voc_entry_2.id;
-                let voc_entry_id_4 = voc_entry_3.id;
-                let voc_entry_translation_0 = voc_entry_0.translation;
-                let voc_entry_translation_1 = voc_entry_1.translation;
-                let voc_entry_translation_2 = voc_entry_2.translation;
-                let voc_entry_translation_3 = voc_entry_3.translation;
-                */
-
                 this.setState({
-                    voc_entry_id_0: results.rows.item(0).id,
-                    voc_entry_id_1: results.rows.item(1).id,
-                    voc_entry_id_2: results.rows.item(2).id,
-                    voc_entry_id_3: results.rows.item(3).id,
-                    voc_entry_translation_0: results.rows.item(0).translation,
-                    voc_entry_translation_1: results.rows.item(1).translation,
-                    voc_entry_translation_2: results.rows.item(2).translation,
-                    voc_entry_translation_3: results.rows.item(3).translation,
+                    voc_entry_0_id: results.rows.item(0).id,
+                    voc_entry_1_id: results.rows.item(1).id,
+                    voc_entry_2_id: results.rows.item(2).id,
+                    voc_entry_3_id: results.rows.item(3).id,
+                    voc_entry_0_translation: results.rows.item(0).translation,
+                    voc_entry_1_translation: results.rows.item(1).translation,
+                    voc_entry_2_translation: results.rows.item(2).translation,
+                    voc_entry_3_translation: results.rows.item(3).translation,
                 });
             });
         });
@@ -125,51 +114,66 @@ export default class FlashCard extends Component<{}> {
                     voc_entry_correct_id: voc_entry_correct_id,
                     voc_entry_correct_translation: voc_entry_correct_translation,
                 });
+
+                this.setState({ stateIsSet: true });
             });
         });
-
-        // test prepareVocOptions()
-        let voc_option_correct = { id: this.state.voc_entry_correct_id, translation: this.state.voc_entry_correct_translation };
-        let voc_options_random = {
-            0: { id: this.state.voc_entry_id_0, translation: this.state.voc_entry_translation_0 },
-            1: { id: this.state.voc_entry_id_1, translation: this.state.voc_entry_translation_1 },
-            2: { id: this.state.voc_entry_id_2, translation: this.state.voc_entry_translation_2 },
-            3: { id: this.state.voc_entry_id_3, translation: this.state.voc_entry_translation_3 },
-        };
-        console.log('voc_options_random[0] ' + JSON.stringify(voc_options_random[0]));
-        let voc_options_result = this.prepareVocOptions(voc_option_correct, voc_options_random);
     }
 
     prepareVocOptions(voc_option_correct, voc_options_random) {
-        let voc_options_result = {};
-        let correct_in_array = false;
+        var voc_options_result = [];
+        var correct_in_array = false;
         for (var value_random in voc_options_random) {
             voc_options_result[value_random] = voc_options_random[value_random];
-            if (value_random.id == voc_option_correct.id) {
+            if (voc_options_random[value_random][0] == voc_option_correct[0]) {
                 correct_in_array = true;
             }
         };
-        console.log('prepareVocOptions voc_options_random' + JSON.stringify(voc_options_random));
         if (!correct_in_array) {
             voc_options_result = [];
-            let index_to_replace = Math.floor(Math.random() * voc_options_random.length());
-            let index_counter = 0;
+
+            var index_to_replace = Math.floor(Math.random() * voc_options_random.length);
+            console.log('prepareVocOptions voc_options_random.length: ' + voc_options_random.length);
+            console.log('prepareVocOptions index_to_replace: ' + index_to_replace);
+            var index_counter = 0;
             for (var value_random in voc_options_random) {
                 if (index_counter == index_to_replace) {
                     voc_options_result[value_random] = voc_option_correct;
                 } else {
-                    voc_options_result.push(value_random);
+                    voc_options_result[value_random] = voc_options_random[value_random];
                 }
                 index_counter++;
             };
         }
         for (var value_result in voc_options_result) {
-            value_result.option_correct = false;
-            if (value_result.id == voc_option_correct.id) {
-                value_result.option_correct = true;
+            voc_options_result[value_result][2] = false;
+            if (voc_options_result[value_result][0] == voc_option_correct[0]) {
+                voc_options_result[value_result][2] = true;
             }
         };
         return voc_options_result;
+    }
+
+    componentDidUpdate() {
+        if (this.state.stateIsSet) {
+            // test prepareVocOptions()
+            var voc_option_correct = [ this.state.voc_entry_correct_id, this.state.voc_entry_correct_translation ];
+            var voc_options_random = [
+                [ this.state.voc_entry_0_id, this.state.voc_entry_0_translation ],
+                [ this.state.voc_entry_1_id, this.state.voc_entry_1_translation ],
+                [ this.state.voc_entry_2_id, this.state.voc_entry_2_translation ],
+                [ this.state.voc_entry_3_id, this.state.voc_entry_3_translation ],
+            ];
+            var voc_options_result = this.prepareVocOptions(voc_option_correct, voc_options_random);
+            // console.log('componentDidUpdate voc_options_result: ' + JSON.stringify(voc_options_result));
+            this.setState({
+                voc_entry_0_translation: voc_options_result[0][1],
+                voc_entry_1_translation: voc_options_result[1][1],
+                voc_entry_2_translation: voc_options_result[2][1],
+                voc_entry_3_translation: voc_options_result[3][1],
+                stateIsSet: false,
+            });
+        }
     }
 
     render() {
@@ -201,22 +205,22 @@ export default class FlashCard extends Component<{}> {
 
                     <TouchableNativeFeedback onPress={this.onPressButton}>
                         <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>{this.state.voc_entry_translation_0}</Text>
+                            <Text style={styles.play_button_text}>{this.state.voc_entry_0_translation}</Text>
                         </View>
                     </TouchableNativeFeedback>
                     <TouchableNativeFeedback onPress={this.onPressButton}>
                         <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>{this.state.voc_entry_translation_1}</Text>
+                            <Text style={styles.play_button_text}>{this.state.voc_entry_1_translation}</Text>
                         </View>
                     </TouchableNativeFeedback>
                     <TouchableNativeFeedback onPress={this.onPressButton}>
                         <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>{this.state.voc_entry_translation_2}</Text>
+                            <Text style={styles.play_button_text}>{this.state.voc_entry_2_translation}</Text>
                         </View>
                     </TouchableNativeFeedback>
                     <TouchableNativeFeedback onPress={this.onPressButton}>
                         <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>{this.state.voc_entry_translation_3}</Text>
+                            <Text style={styles.play_button_text}>{this.state.voc_entry_3_translation}</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
