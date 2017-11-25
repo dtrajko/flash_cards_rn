@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     section_picture: {
         flex: 8,
         alignSelf: 'stretch',
+        justifyContent: 'center',
         alignItems: 'center',
     },
     section_language: {
@@ -19,7 +20,8 @@ const styles = StyleSheet.create({
         padding: 6,
     },
     term_image: {
-        height: 150,
+        width: '100%',
+        height: 185,
     },
     flag_image: {
         width: 60,
