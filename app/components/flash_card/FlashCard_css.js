@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     section_score_text: {
         fontSize: 24,
         fontWeight: 'bold',
+        marginBottom: 10,
     },
     section_picture: {
         flex: 8,
@@ -67,13 +68,16 @@ const styles = StyleSheet.create({
     },
     modal_popup: {
         flex: 1,
+        marginTop: 90,
+        marginBottom: 20,
         padding: 10,
-        paddingBottom: 90,
+        paddingBottom: 70,
         backgroundColor: '#FFF',
         justifyContent: 'flex-end',
         alignSelf: 'stretch',
         alignItems: 'center',
         opacity: 1,
+        borderRadius: 20,
     },
     modal_popup_correct: {
         // backgroundColor: '#e6ffe6',
