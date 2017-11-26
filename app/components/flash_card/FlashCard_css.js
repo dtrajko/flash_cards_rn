@@ -6,11 +6,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    section_score: {
+        flex: 2,
+        backgroundColor: '#EEE',
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        paddingTop: 10,
+    },
+    section_score_text: {
+        fontSize: 24,
+        fontWeight: 'bold',
+    },
     section_picture: {
         flex: 8,
         alignSelf: 'stretch',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: 5,
     },
     section_language: {
         flex: 2,
@@ -40,7 +52,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         marginTop: 0,
     },
-    play_button: {
+    option_button: {
         alignSelf: 'stretch',
         alignItems: 'center',
         backgroundColor: '#2196F3',
@@ -48,9 +60,53 @@ const styles = StyleSheet.create({
         margin: 4,
         marginTop: 0,
     },
-    play_button_text: {
+    option_button_text: {
         color: 'white',
         fontSize: 20,
+        fontWeight: 'bold',
+    },
+    modal_popup: {
+        flex: 1,
+        padding: 10,
+        backgroundColor: '#FFF',
+        justifyContent: 'center',
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        opacity: 1,
+    },
+    modal_popup_correct: {
+        // backgroundColor: '#e6ffe6',
+    },
+    modal_popup_incorrect: {
+        // backgroundColor: '#ffe6e6',
+    },
+    modal_popup_text: {
+        fontSize: 32,
+        fontWeight: 'bold',
+    },
+    modal_popup_text_correct: {
+        color: '#339966',
+    },
+    modal_popup_text_incorrect: {
+        fontSize: 30,
+        color: '#cc0000',
+    },
+    modal_popup_button: {
+        width: 260,
+        alignItems: 'center',
+        backgroundColor: '#2196F3',
+        padding: 10,
+        borderStyle: 'solid',
+        borderWidth: 2,
+        borderColor: '#007acc',
+        marginTop: 30,
+        paddingBottom: 15,
+        opacity: 1
+    },
+    modal_popup_button_text: {
+        padding: 10,
+        color: '#FFF',
+        fontSize: 32,
         fontWeight: 'bold',
     },
 });

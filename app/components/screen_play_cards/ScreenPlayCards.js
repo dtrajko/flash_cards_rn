@@ -16,14 +16,9 @@ export default class ScreenPlayCards extends Component<{}> {
     render() {
         return (
             <ScrollView contentContainerStyle={styles.container}>
-                <View style={styles.section_score}>
-                    <Text style={styles.section_score_text}>Score: 0 | Best score: 0</Text>
-                </View>
-
                 <View style={styles.section_flash_card}>
                     <FlashCard />
                 </View>
-
             </ScrollView>
         );
     }
@@ -35,19 +30,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    section_score: {
-        flex: 2,
-        backgroundColor: '#EEE',
-        alignSelf: 'stretch',
-        alignItems: 'center',
-        paddingTop: 10,
-    },
-    section_score_text: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
     section_flash_card: {
-        flex: 22,
+        flex: 1,
         alignSelf: 'stretch',
     }
 });

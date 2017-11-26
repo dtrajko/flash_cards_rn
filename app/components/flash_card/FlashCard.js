@@ -6,11 +6,11 @@
 
 import React, { Component } from 'react';
 import {AppRegistry, Platform, Text, View, ScrollView, TouchableOpacity, Alert, Image} from 'react-native';
-import SQLite from 'react-native-sqlite-storage';
 import ImagesIndex from '../../../resources/images/images_index';
 import styles from './FlashCard_css';
+import SQLite from 'react-native-sqlite-storage';
+import Modal from 'react-native-modal';
 
-let term_picture = '';
 
 export default class FlashCard extends Component<{}> {
 
@@ -27,8 +27,15 @@ export default class FlashCard extends Component<{}> {
             fetchDbVocRandomComplete: false,
             fetchDbVocCorrectComplete: false,
             processFetchedDataComplete: false,
+            isModalVisible: false,
+            isAnswerCorrect: false,
+            modalMessage: '',
         }
     }
+
+    _showModal = () => this.setState({ isModalVisible: true })
+
+    _hideModal = () => this.setState({ isModalVisible: false })
 
     errorCB(err) {
         console.log("SQL Error: " + err);
@@ -48,6 +55,7 @@ export default class FlashCard extends Component<{}> {
     }
 
     componentDidMount() {
+        this.updateScore(0); // reset the score
         this.fetchAndProcessData();
     }
 
@@ -259,23 +267,87 @@ export default class FlashCard extends Component<{}> {
             // console.log('checkAnswer sql: ' + sql);
             tx.executeSql(sql, [], (tx, results) => {
                 if (results.rows.length == 1) {
-                    Alert.alert('The answer is correct!');
+                    this.updateScore(+1);
+                    // Alert.alert('Your answer is correct!');
+                    this.setState({
+                        isAnswerCorrect: true,
+                        modalMessage: 'Your answer is correct!'
+                    });
+                    this._showModal();
                 } else {
-                    Alert.alert('Wrong answer!');
+                    this.updateScore(-1);
+                    // Alert.alert('Your answer is incorrect.');
+                    this.setState({
+                        isAnswerCorrect: false,
+                        modalMessage: 'Your answer is incorrect.'
+                    });
+                    this._showModal();
                 }
             });
         });
         this.resetSemaphores();
     }
 
+    updateScore(outcome) {
+        this.state.db.transaction((tx) => {
+            // get settings
+            let sql = "SELECT * FROM settings ORDER BY name ASC";
+            tx.executeSql(sql, [], (tx, results) => {
+                let score = results.rows.item(0).value;
+                let score_total = results.rows.item(1).value;
+                if (outcome == 1) {
+                    // success, increment score by 1
+                    score++;
+                    if (score > score_total) {
+                        score_total = score;
+                    }
+                } else if (outcome == -1) {
+                    // failure, decrement score by 1
+                    score--;
+                    if (score < 0) {
+                        score = 0;
+                    }
+                } else if (outcome == 0) {
+                    score = 0;
+                }
+                let sql_score = "UPDATE settings SET value = '" + score + "' WHERE name = 'score'";
+                tx.executeSql(sql_score);
+                console.log('sql_score: ' + sql_score);
+                let sql_score_total = "UPDATE settings SET value = '" + score_total + "' WHERE name = 'score_total'";
+                tx.executeSql(sql_score_total);
+                console.log('sql_score_total: ' + sql_score_total);
+                this.setState({
+                    score: score,
+                    score_total: score_total,
+                });
+            });
+        });
+    }
+
+    modalPopupStyle() {
+        if (this.state.isAnswerCorrect) {
+            return styles.modal_popup_correct;
+        } else {
+            return styles.modal_popup_incorrect;
+        }
+    }
+
+    modalPopupTextStyle() {
+        if (this.state.isAnswerCorrect) {
+            return styles.modal_popup_text_correct;
+        } else {
+            return styles.modal_popup_text_incorrect;
+        }
+    }
+
     render() {
-
-        let term_id = 10;
-        let language_id = 20;
-        let vocabulary_id = 30;
-
         return (
+
             <View style={styles.container}>
+
+                <View style={styles.section_score}>
+                    <Text style={styles.section_score_text}>Score: {this.state.score} | Best score: {this.state.score_total}</Text>
+                </View>
 
                 <View style={styles.section_picture}>
                     <Image
@@ -300,26 +372,40 @@ export default class FlashCard extends Component<{}> {
                 <View style={styles.section_buttons}>
 
                     <TouchableOpacity onPress={this.checkAnswer.bind(this, this.state.term_id, this.state.language_id, this.state.voc_entry_0_id)}>
-                        <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>{this.state.voc_entry_0_translation}</Text>
+                        <View style={styles.option_button}>
+                            <Text style={styles.option_button_text}>{this.state.voc_entry_0_translation}</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this.checkAnswer.bind(this, this.state.term_id, this.state.language_id, this.state.voc_entry_1_id)}>
-                        <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>{this.state.voc_entry_1_translation}</Text>
+                        <View style={styles.option_button}>
+                            <Text style={styles.option_button_text}>{this.state.voc_entry_1_translation}</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this.checkAnswer.bind(this, this.state.term_id, this.state.language_id, this.state.voc_entry_2_id)}>
-                        <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>{this.state.voc_entry_2_translation}</Text>
+                        <View style={styles.option_button}>
+                            <Text style={styles.option_button_text}>{this.state.voc_entry_2_translation}</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this.checkAnswer.bind(this, this.state.term_id, this.state.language_id, this.state.voc_entry_3_id)}>
-                        <View style={styles.play_button}>
-                            <Text style={styles.play_button_text}>{this.state.voc_entry_3_translation}</Text>
+                        <View style={styles.option_button}>
+                            <Text style={styles.option_button_text}>{this.state.voc_entry_3_translation}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
+
+                <Modal
+                    isVisible={this.state.isModalVisible}
+                    animationIn={'slideInLeft'}
+                    animationOut={'slideOutRight'}>
+                    <View style={[styles.modal_popup, this.modalPopupStyle()]}>
+                        <Text style={[styles.modal_popup_text, this.modalPopupTextStyle()]}>{this.state.modalMessage}</Text>
+                        <TouchableOpacity onPress={() => {this._hideModal()}}>
+                            <View style={styles.modal_popup_button}>
+                                <Text style={styles.modal_popup_button_text}>NEXT ►</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
 
             </View>
         );
