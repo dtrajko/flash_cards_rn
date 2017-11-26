@@ -131,6 +131,7 @@ const ImagesIndex = {
     term_image_1510320576: require('./terms/1510320576.jpg'),
     term_image_1510322043: require('./terms/1510322043.jpg'),
     term_image_1511660456: require('./terms/1511660456.jpg'),
+    term_image_1507970448: require('./terms/1511660456.jpg'), // the sqlite caching issue
 };
 
 export default ImagesIndex;

@@ -110,11 +110,14 @@ export default class FlashCard extends Component<{}> {
         this.setState({ fetchDbTermStarted: true });
         this.state.db.transaction((tx) => {
             // get random term
-            tx.executeSql("SELECT * FROM terms ORDER BY RANDOM() LIMIT 1", [], (tx, results) => {
+            let sql = "SELECT * FROM terms ORDER BY RANDOM() LIMIT 1";
+            // console.log('fetchDbTerm sql: ' + sql);
+            tx.executeSql(sql, [], (tx, results) => {
                 let term = results.rows.item(0);
                 let term_id = term.id;
                 let term_name = term.name;
                 let term_picture = term.picture.substr(0, term.picture.lastIndexOf('.')) || term.picture;
+                // console.log('fetchDbTerm fork: ' + term_picture);
                 this.setState({
                     term_id: term_id,
                     term_name: term_name,
@@ -312,10 +315,10 @@ export default class FlashCard extends Component<{}> {
                 }
                 let sql_score = "UPDATE settings SET value = '" + score + "' WHERE name = 'score'";
                 tx.executeSql(sql_score);
-                console.log('sql_score: ' + sql_score);
+                // console.log('sql_score: ' + sql_score);
                 let sql_score_total = "UPDATE settings SET value = '" + score_total + "' WHERE name = 'score_total'";
                 tx.executeSql(sql_score_total);
-                console.log('sql_score_total: ' + sql_score_total);
+                // console.log('sql_score_total: ' + sql_score_total);
                 this.setState({
                     score: score,
                     score_total: score_total,
