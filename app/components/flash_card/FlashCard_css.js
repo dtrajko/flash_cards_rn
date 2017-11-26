@@ -81,14 +81,13 @@ const styles = StyleSheet.create({
         // backgroundColor: '#ffe6e6',
     },
     modal_popup_text: {
-        fontSize: 32,
+        fontSize: 26,
         fontWeight: 'bold',
     },
     modal_popup_text_correct: {
         color: '#339966',
     },
     modal_popup_text_incorrect: {
-        fontSize: 30,
         color: '#cc0000',
     },
     modal_popup_button: {
