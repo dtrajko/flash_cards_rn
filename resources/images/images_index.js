@@ -130,6 +130,7 @@ const ImagesIndex = {
     term_image_1510317532: require('./terms/1510317532.png'),
     term_image_1510320576: require('./terms/1510320576.jpg'),
     term_image_1510322043: require('./terms/1510322043.jpg'),
+    term_image_1511660456: require('./terms/1511660456.jpg'),
 };
 
 export default ImagesIndex;
