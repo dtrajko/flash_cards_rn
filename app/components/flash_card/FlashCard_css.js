@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     section_score_text: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 10,
+        marginBottom: 0,
     },
     section_picture: {
         flex: 8,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     term_image: {
         width: '100%',
-        height: 185,
+        height: 170,
     },
     flag_image: {
         width: 60,
