@@ -68,8 +68,9 @@ const styles = StyleSheet.create({
     modal_popup: {
         flex: 1,
         padding: 10,
+        paddingBottom: 90,
         backgroundColor: '#FFF',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignSelf: 'stretch',
         alignItems: 'center',
         opacity: 1,
@@ -91,21 +92,22 @@ const styles = StyleSheet.create({
         color: '#cc0000',
     },
     modal_popup_button: {
-        width: 260,
+        width: 280,
         alignItems: 'center',
         backgroundColor: '#2196F3',
         padding: 10,
         borderStyle: 'solid',
         borderWidth: 2,
         borderColor: '#007acc',
-        marginTop: 30,
-        paddingBottom: 15,
+        marginTop: 50,
+        paddingTop: 30,
+        paddingBottom: 35,
         opacity: 1
     },
     modal_popup_button_text: {
         padding: 10,
         color: '#FFF',
-        fontSize: 32,
+        fontSize: 48,
         fontWeight: 'bold',
     },
 });
