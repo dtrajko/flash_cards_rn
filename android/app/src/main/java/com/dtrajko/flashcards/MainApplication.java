@@ -1,4 +1,4 @@
-package com.flash_cards_rn;
+package com.dtrajko.flashcards;
 
 import android.app.Application;
 

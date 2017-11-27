@@ -98,7 +98,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.flash_cards_rn"
+        applicationId "com.dtrajko.flashcards"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

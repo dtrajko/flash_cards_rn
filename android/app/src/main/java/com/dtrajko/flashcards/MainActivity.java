@@ -1,4 +1,4 @@
-package com.flash_cards_rn;
+package com.dtrajko.flashcards;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "flash_cards_rn";
+        return "FlashCards";
     }
 }
