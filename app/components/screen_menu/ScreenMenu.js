@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import {AppRegistry, Platform, StyleSheet, Text, View, TouchableHighlight, Alert, ImageBackground} from 'react-native';
+import {AppRegistry, Platform, StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground} from 'react-native';
 import styles from './ScreenMenu_css';
 
 export default class ScreenMenu extends Component<{}> {
@@ -30,11 +30,16 @@ export default class ScreenMenu extends Component<{}> {
                         <Text style={styles.flash_cards_text}>Flash Cards</Text>
                     </View>
                     <View style={styles.container_bottom}>
-                        <TouchableHighlight onPress={() => navigate('ScreenPlayCards', {})}>
+                        <TouchableOpacity onPress={() => navigate('ScreenPlayCards', {})}>
                             <View style={styles.play_button}>
                                 <Text style={styles.play_button_text}>Play Cards</Text>
                             </View>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigate('ScreenLanguages', {})}>
+                            <View style={[styles.play_button, styles.languages_button]}>
+                                <Text style={styles.play_button_text}>Languages</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
 
                 </ImageBackground>

@@ -40,7 +40,10 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#888',
         paddingBottom: 15,
-        opacity: 0.8
+        opacity: 1,
+    },
+    languages_button: {
+        marginTop: 20,
     },
     play_button_text: {
         padding: 10,

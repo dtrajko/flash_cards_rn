@@ -78,25 +78,19 @@ export default class FlashCard extends Component<{}> {
     }
 
     fetchAndProcessData() {
-
-        console.log('fetchAndProcessData');
-
+        // console.log('fetchAndProcessData');
         if (!this.state.fetchDbTermStarted && !this.state.fetchDbTermComplete) {
             this.fetchDbTerm();
         }
-
         if (!this.state.fetchDbLanguageStarted && !this.state.fetchDbLanguageComplete) {
             this.fetchDbLanguage();
         }
-
         if (!this.state.fetchDbVocRandomStarted && !this.state.fetchDbVocRandomComplete) {
             this.fetchDbVocRandom();
         }
-
         if (!this.state.fetchDbVocCorrectStarted && !this.state.fetchDbVocCorrectComplete) {
             this.fetchDbVocCorrect();
         }
-
         if (this.state.fetchDbTermComplete &&
             this.state.fetchDbLanguageComplete &&
             this.state.fetchDbVocRandomComplete &&
@@ -124,7 +118,7 @@ export default class FlashCard extends Component<{}> {
                     term_picture: term_picture,
                     fetchDbTermComplete: true,
                 });
-                console.log('fetchDbTerm::fetchDbTermComplete');
+                // console.log('fetchDbTerm::fetchDbTermComplete');
             });
         });
     }
@@ -144,7 +138,7 @@ export default class FlashCard extends Component<{}> {
                     language_name: language_name,
                     fetchDbLanguageComplete: true,
                 });
-                console.log('fetchDbLanguage::fetchDbLanguageComplete');
+                // console.log('fetchDbLanguage::fetchDbLanguageComplete');
             });
         });
     }
@@ -170,7 +164,7 @@ export default class FlashCard extends Component<{}> {
                     voc_entry_3_translation: results.rows.item(3).translation,
                     fetchDbVocRandomComplete: true,
                 });
-                console.log('fetchDbVocRandom::fetchDbVocRandomComplete');
+                // console.log('fetchDbVocRandom::fetchDbVocRandomComplete');
             });
         });
     }
@@ -196,7 +190,7 @@ export default class FlashCard extends Component<{}> {
                     voc_entry_correct_translation: voc_entry_correct_translation,
                     fetchDbVocCorrectComplete: true,
                 });
-                console.log('fetchDbVocCorrect::fetchDbVocCorrect');
+                // console.log('fetchDbVocCorrect::fetchDbVocCorrect');
             });
         });
     }
@@ -223,7 +217,7 @@ export default class FlashCard extends Component<{}> {
             voc_entry_3_translation: voc_options_result[3][1],
             processFetchedDataComplete: true,
         });
-        console.log('processFetchedData::processFetchedDataComplete');
+        // console.log('processFetchedData::processFetchedDataComplete');
     }
 
     prepareVocOptions(voc_option_correct, voc_options_random) {

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     section_score_text: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 0,
+        marginBottom: 10,
     },
     section_picture: {
         flex: 8,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     term_image: {
         width: '100%',
-        height: 170,
+        height: 185,
     },
     flag_image: {
         width: 60,
@@ -68,16 +68,16 @@ const styles = StyleSheet.create({
     },
     modal_popup: {
         flex: 1,
-        marginTop: 90,
-        marginBottom: 20,
         padding: 10,
-        paddingBottom: 70,
+        marginTop: 100,
+        marginBottom: 20,
+        paddingBottom: 50,
         backgroundColor: '#FFF',
         justifyContent: 'flex-end',
         alignSelf: 'stretch',
         alignItems: 'center',
         opacity: 1,
-        borderRadius: 20,
+        borderRadius: 30,
     },
     modal_popup_correct: {
         // backgroundColor: '#e6ffe6',

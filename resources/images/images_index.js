@@ -1,10 +1,10 @@
 const ImagesIndex = {
 
     // images for flags
-    flag_image_1507986518: require('./flags/1507986518.jpg'),
-    flag_image_1507986530: require('./flags/1507986530.jpg'),
-    flag_image_1507986818: require('./flags/1507986818.jpg'),
-    flag_image_1507989268: require('./flags/1507989268.jpg'),
+    flag_image_1507986518: require('./flags/1507986518.jpg'), // Deutsch
+    flag_image_1507986530: require('./flags/1507986530.jpg'), // Francais
+    flag_image_1507986818: require('./flags/1507986818.jpg'), // English
+    flag_image_1507989268: require('./flags/1507989268.jpg'), // Serbian
 
     // images for terms
     term_image_1507970632: require('./terms/1507970632.jpg'),
@@ -131,7 +131,6 @@ const ImagesIndex = {
     term_image_1510320576: require('./terms/1510320576.jpg'),
     term_image_1510322043: require('./terms/1510322043.jpg'),
     term_image_1511660456: require('./terms/1511660456.jpg'),
-    term_image_1507970448: require('./terms/1511660456.jpg'), // the sqlite caching issue
 };
 
 export default ImagesIndex;
