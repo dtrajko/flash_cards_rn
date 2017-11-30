@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
     modal_popup: {
         flex: 1,
         padding: 10,
-        marginTop: 100,
-        marginBottom: 20,
+        marginTop: 90,
+        marginBottom: 0,
         paddingBottom: 50,
         backgroundColor: '#FFF',
         justifyContent: 'flex-end',

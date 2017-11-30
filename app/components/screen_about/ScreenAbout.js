@@ -36,7 +36,7 @@ export default class ScreenAbout extends Component<{}> {
     }
 
     openDb() {
-        return SQLite.openDatabase({name : 'flash_cards', version: '0.1.28', createFromLocation : '~flash_cards.sqlite'}, this.openCB, this.errorCB);
+        return SQLite.openDatabase({name : 'flash_cards', createFromLocation : '~flash_cards.sqlite'}, this.openCB, this.errorCB);
     }
 
     deleteExistingDb() {
@@ -60,12 +60,12 @@ export default class ScreenAbout extends Component<{}> {
         this.state.db.transaction((tx) => {
             let sql = "SELECT value FROM settings WHERE name = 'version'";
             tx.executeSql(sql, [], (tx, results) => {
-                console.log('results.rows.length = ' + results.rows.length);
+                // console.log('results.rows.length = ' + results.rows.length);
                 if (results.rows.length == 1) {
                     let version = results.rows.item(0).value;
                     this.setState({version: version});
                 }
-                console.log('getVersion: ' + version);
+                // console.log('getVersion: ' + version);
             });
         });
     }

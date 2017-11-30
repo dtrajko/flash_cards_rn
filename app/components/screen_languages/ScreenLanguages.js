@@ -37,7 +37,7 @@ export default class ScreenLanguages extends Component<{}> {
     }
 
     openDb() {
-        return SQLite.openDatabase({name : 'flash_cards', version: '0.1.28', createFromLocation : '~flash_cards.sqlite'}, this.openCB, this.errorCB);
+        return SQLite.openDatabase({name : 'flash_cards', createFromLocation : '~flash_cards.sqlite'}, this.openCB, this.errorCB);
     }
 
     changeSwitchState(language_name, value) {
