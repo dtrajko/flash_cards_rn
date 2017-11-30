@@ -37,8 +37,7 @@ export default class ScreenLanguages extends Component<{}> {
     }
 
     openDb() {
-        return SQLite.openDatabase({name: 'flash_cards', createFromLocation: '~flash_cards.sqlite',
-            location: 'Library'}, this.openCB, this.errorCB);
+        return SQLite.openDatabase({name : 'flash_cards', version: '0.1.28', createFromLocation : '~flash_cards.sqlite'}, this.openCB, this.errorCB);
     }
 
     changeSwitchState(language_name, value) {
@@ -57,14 +56,6 @@ export default class ScreenLanguages extends Component<{}> {
 
     componentDidMount() {
         this.checkLanguagesEnabled();
-    }
-
-    utilityWriteQuery() {
-        this.state.db.transaction((tx) => {
-            let sql = "UPDATE terms SET picture = '1511660456.jpg' WHERE name = 'fork'";
-            console.log('utilityWriteQuery sql: ' + sql);
-            tx.executeSql(sql, [], this.successCB, this.errorCB);
-        });
     }
 
     setLanguageEnabledDb(language_name, enabled_bool) {

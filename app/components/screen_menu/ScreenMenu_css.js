@@ -9,12 +9,12 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
     },
     container_top: {
-        flex: 3,
+        flex: 2,
         justifyContent: 'flex-end',
         alignItems: 'center',
         alignSelf: 'stretch',
         backgroundColor: '#000',
-        paddingBottom: 0,
+        paddingBottom: 10,
         opacity: 0.5,
     },
     container_bottom: {
@@ -34,20 +34,23 @@ const styles = StyleSheet.create({
     play_button: {
         width: 260,
         alignItems: 'center',
-        backgroundColor: '#FFF',
+        backgroundColor: '#2196F3',
         padding: 10,
         borderStyle: 'solid',
         borderWidth: 2,
-        borderColor: '#888',
+        borderColor: '#FFF',
         paddingBottom: 15,
         opacity: 1,
     },
     languages_button: {
         marginTop: 20,
     },
+    about_button: {
+        marginTop: 20,
+    },
     play_button_text: {
-        padding: 10,
-        color: '#333',
+        padding: 5,
+        color: '#FFF',
         fontSize: 32,
         fontWeight: 'bold',
     },

@@ -50,8 +50,7 @@ export default class FlashCard extends Component<{}> {
     }
 
     openDb() {
-        return SQLite.openDatabase({name: 'flash_cards', createFromLocation: '~flash_cards.sqlite',
-            location: 'Library'}, this.openCB, this.errorCB);
+        return SQLite.openDatabase({name : 'flash_cards', version: '0.1.28', createFromLocation : '~flash_cards.sqlite'}, this.openCB, this.errorCB);
     }
 
     componentDidMount() {
@@ -288,7 +287,7 @@ export default class FlashCard extends Component<{}> {
     updateScore(outcome) {
         this.state.db.transaction((tx) => {
             // get settings
-            let sql = "SELECT * FROM settings ORDER BY name ASC";
+            let sql = "SELECT * FROM settings WHERE name IN ('score', 'score_total') ORDER BY name ASC";
             tx.executeSql(sql, [], (tx, results) => {
                 let score = results.rows.item(0).value;
                 let score_total = results.rows.item(1).value;

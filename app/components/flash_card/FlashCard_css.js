@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         alignItems: 'center',
         paddingTop: 10,
+        marginBottom: 10,
     },
     section_score_text: {
         fontSize: 24,
@@ -19,11 +20,11 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     section_picture: {
-        flex: 8,
+        flex: 10,
         alignSelf: 'stretch',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 5,
+        paddingTop: 0,
     },
     section_language: {
         flex: 2,
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     section_buttons: {
-        flex: 13,
+        flex: 14,
         alignSelf: 'stretch',
         marginTop: 0,
     },
