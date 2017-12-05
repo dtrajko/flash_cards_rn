@@ -18,7 +18,7 @@ export default class ScreenAbout extends Component<{}> {
         super();
         this.state = {
             db: this.openDb(),
-            version: '0.0.0',
+            version: '0.0.00.000',
         };
         // this.deleteExistingDb();
     }

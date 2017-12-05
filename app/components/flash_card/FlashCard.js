@@ -178,7 +178,7 @@ export default class FlashCard extends Component<{}> {
                 " WHERE l.enabled = 1 " +
                 " AND l.name = '" + this.state.language_name + "'" +
                 " AND t.name = '" + this.state.term_name + "'" +
-                " LIMIT 1";
+                " ORDER BY RANDOM() LIMIT 1";
             // console.log('voc_entry_correct_translation query: ' + sql);
             tx.executeSql(sql, [], (tx, results) => {
                 let voc_entry_correct = results.rows.item(0);
