@@ -150,6 +150,19 @@ const ImagesIndex = {
 	term_image_1512200109: require('./terms/1512200109.jpg'),
 	term_image_1512200629: require('./terms/1512200629.jpg'),
 	term_image_1512477687: require('./terms/1512477687.jpg'),
+	term_image_1512480300: require('./terms/1512480300.jpg'),
+	term_image_1512480682: require('./terms/1512480682.jpg'),
+	term_image_1512481192: require('./terms/1512481192.jpg'),
+	term_image_1512485770: require('./terms/1512485770.jpg'),
+	term_image_1512487847: require('./terms/1512487847.jpg'),
+	term_image_1512488076: require('./terms/1512488076.jpg'),
+	term_image_1512488862: require('./terms/1512488862.jpg'),
+	term_image_1513241186: require('./terms/1513241186.jpg'),
+	term_image_1513241900: require('./terms/1513241900.jpg'),
+	term_image_1513242290: require('./terms/1513242290.jpg'),
+	term_image_1513242688: require('./terms/1513242688.jpg'),
+	term_image_1513243234: require('./terms/1513243234.jpg'),
+	term_image_1513243557: require('./terms/1513243557.jpg'),
 };
 
 export default ImagesIndex;
