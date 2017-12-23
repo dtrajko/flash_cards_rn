@@ -89,9 +89,10 @@ export default class ScreenSearch extends Component<{}> {
 
                 <View style={styles.search_field_container}>
                     <TextInput style={styles.search_text_input}
-                            placeholder = { 'search' }
-                            placeholderTextColor = { '#BBB' }
-                            autoCapitalize = {'none'}
+                            placeholder='search'
+                            placeholderTextColor='#BBB'
+                            autoCapitalize='none'
+                            underlineColorAndroid='rgba(0,0,0,0)'
                             onChangeText={(keyword) => this.updateSearchResults(keyword)}
                             value={this.state.keyword}
                           />
