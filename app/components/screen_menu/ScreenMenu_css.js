@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         opacity: 0.5,
     },
     container_bottom: {
-        flex: 4,
+        flex: 5,
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 0,
@@ -43,10 +43,13 @@ const styles = StyleSheet.create({
         opacity: 1,
     },
     languages_button: {
-        marginTop: 20,
+        marginTop: 16,
+    },
+    search_button: {
+        marginTop: 16,
     },
     about_button: {
-        marginTop: 20,
+        marginTop: 16,
     },
     play_button_text: {
         padding: 5,

@@ -39,6 +39,11 @@ export default class ScreenMenu extends Component<{}> {
                                     <Text style={styles.play_button_text}>Languages</Text>
                                 </View>
                             </TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigate('ScreenSearch', {})}>
+                                <View style={[styles.play_button, styles.search_button]}>
+                                    <Text style={styles.play_button_text}>Search</Text>
+                                </View>
+                            </TouchableOpacity>
                             <TouchableOpacity onPress={() => navigate('ScreenAbout', {})}>
                                 <View style={[styles.play_button, styles.about_button]}>
                                     <Text style={styles.play_button_text}>About</Text>
