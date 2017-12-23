@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     },
     search_text_input: {
         height: 50,
+        paddingLeft: 15,
         borderColor: 'gray',
         backgroundColor: '#EEE',
         borderWidth: 1,
