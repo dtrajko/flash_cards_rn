@@ -52,7 +52,7 @@ export default class ScreenSearch extends Component<{}> {
     updateSearchResults(keyword) {
         // alert('updateSearchResults: ' + keyword);
         this.setState({keyword: keyword});
-        var arr_results = new Array();
+        var arr_results = [];
         if (keyword == '') {
             this.setState({
                 results: arr_results,
@@ -64,17 +64,22 @@ export default class ScreenSearch extends Component<{}> {
             // get the correct entry
             let sql = "SELECT v.id, v.translation, t.name, v.language_id, v.term_id" +
                 " FROM vocabulary v" +
-                " JOIN terms t ON v.term_id = t.id" +
+                " INNER JOIN terms t ON v.term_id = t.id" +
                 " WHERE v.translation LIKE '%" + this.state.keyword + "%'" +
                 " OR t.name LIKE '%" + this.state.keyword + "%'" +
                 " ORDER BY v.translation ASC";
-            console.log('updateSearchResults query: ' + sql);
+            // console.log('updateSearchResults query: ' + sql);
             tx.executeSql(sql, [], (tx, results) => {
                 var len = results.rows.length;
-                console.log('updateSearchResults len: ' + len);
+                // console.log('updateSearchResults len: ' + len);
                 for (let i = 0; i < len; i++) {
-                    console.log(results.rows.item(i).translation);
-                    arr_results.push({key: results.rows.item(i).translation + ' (' + results.rows.item(i).name +')'});
+                    // console.log(results.rows.item(i).translation);
+                    arr_results.push({
+                        key: results.rows.item(i).id,
+                        translation: results.rows.item(i).translation,
+                        name: results.rows.item(i).name,
+                        term_id: results.rows.item(i).term_id,
+                    });
                 }
                 this.setState({
                     results: arr_results,
@@ -84,6 +89,7 @@ export default class ScreenSearch extends Component<{}> {
     }
 
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
 
@@ -101,7 +107,12 @@ export default class ScreenSearch extends Component<{}> {
                 <View style={styles.search_results_container}>
                     <FlatList
                     data={this.state.results}
-                      renderItem={({item}) => <Text style={styles.search_results_item}>{item.key}</Text>}>
+                        renderItem={({item}) =>
+                            <Text
+                                style={styles.search_results_item}
+                                onPress={() => navigate('ScreenTerm', {term_id: item.term_id})}>
+                                    {item.translation} ({item.name})
+                            </Text>}>
                     </FlatList>
                 </View>
 
@@ -112,8 +123,3 @@ export default class ScreenSearch extends Component<{}> {
 
 AppRegistry.registerComponent('ScreenSearch', () => ScreenSearch);
 
-/*
-<View style={styles.search_results_item}>
-    <Text style={styles.search_results_item}>{item.key}</Text>
-</View>>
-*/
