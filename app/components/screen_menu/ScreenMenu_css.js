@@ -32,24 +32,24 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
     },
     play_button: {
-        width: 260,
+        width: 340,
         alignItems: 'center',
         backgroundColor: '#2196F3',
-        padding: 10,
+        padding: 8,
         borderStyle: 'solid',
         borderWidth: 2,
         borderColor: '#FFF',
-        paddingBottom: 15,
+        paddingBottom: 12,
         opacity: 1,
     },
     languages_button: {
-        marginTop: 16,
+        marginTop: 10,
     },
     search_button: {
-        marginTop: 16,
+        marginTop: 10,
     },
     about_button: {
-        marginTop: 16,
+        marginTop: 10,
     },
     play_button_text: {
         padding: 5,

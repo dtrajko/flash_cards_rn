@@ -10,14 +10,14 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
     },
     search_field_container: {
-        height: 80,
+        height: 90,
         alignSelf: 'stretch',
         padding: 20,
         marginTop: 0,
         backgroundColor: '#2196F3',
     },
     search_text_input: {
-        height: 40,
+        height: 50,
         borderColor: 'gray',
         backgroundColor: '#EEE',
         borderWidth: 1,
