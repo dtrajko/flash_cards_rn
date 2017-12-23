@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
     },
     section_term_picture: {
-        flex: 5,
+        flex: 6,
         alignSelf: 'stretch',
         justifyContent: 'center',
         alignItems: 'center',
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     flat_list_voc_items: {
     },
     flat_list_voc_item: {
-        width: 400,
+        width: 360,
         alignSelf: 'stretch',
         alignItems: 'center',
         backgroundColor: '#2196F3',
