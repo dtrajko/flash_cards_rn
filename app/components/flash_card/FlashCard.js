@@ -342,7 +342,7 @@ export default class FlashCard extends Component<{}> {
             <View style={styles.container}>
 
                 <View style={styles.section_score}>
-                    <Text style={styles.section_score_text}>Score: {this.state.score} | Best score: {this.state.score_total}</Text>
+                    <Text style={styles.section_score_text}>Score: {this.state.score} | High score: {this.state.score_total}</Text>
                 </View>
 
                 <View style={styles.section_picture}>
