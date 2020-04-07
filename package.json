@@ -8,7 +8,7 @@
 	},
 	"dependencies": {
 		"hoek": "^5.0.4",
-		"npm": "^6.5.0",
+		"npm": "^6.13.4",
 		"react": "^16.7.0",
 		"react-native": "^0.57.8",
 		"react-native-modal": "^5.4.0",
